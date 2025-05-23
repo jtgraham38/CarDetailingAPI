@@ -13,11 +13,11 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * The path to your application's "home" route.
      *
-     * Typically, users are redirected here after authentication.
+     * For APIs, this should be null as we don't want redirects after authentication.
      *
-     * @var string
+     * @var string|null
      */
-    public const HOME = '/';//'/dashboard';
+    public const HOME = null;
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

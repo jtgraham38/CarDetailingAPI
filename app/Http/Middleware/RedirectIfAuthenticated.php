@@ -21,7 +21,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if ($request->expectsJson()) {
+                    return response()->json([
+                        'message' => 'Authenticated users cannot access this route.',
+                    ], 403); // Or 401, depending on your preference
+                }
+                return redirect(RouteServiceProvider::HOME ?? '/');
             }
         }
 
